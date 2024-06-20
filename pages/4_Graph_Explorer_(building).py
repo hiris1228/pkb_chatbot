@@ -4,7 +4,12 @@ import os
 from gremlin_python.structure.graph import Graph
 from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection
 from pyvis.network import Network
-import aiohttp
+
+# Ensure aiohttp is installed
+try:
+    import aiohttp
+except ImportError:
+    st.error("aiohttp library is not installed. Please install it by running `pip install aiohttp`.")
 
 # Load configuration
 config_path = 'config.json'
