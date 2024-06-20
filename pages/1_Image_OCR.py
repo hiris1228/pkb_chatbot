@@ -28,20 +28,20 @@ if uploaded_file is not None:
     st.text(ocr_text)
 
     # Use OpenAI GPT to process the extracted text
-    if ocr_text.strip():
+    # if ocr_text.strip():
         # Use OpenAI GPT to process the extracted text
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
-            ],
-            max_tokens=500
-        )
+    #     response = openai.ChatCompletion.create(
+    #         model="gpt-4",
+    #         messages=[
+    #             {"role": "system", "content": "You are a helpful assistant."},
+    #             {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
+    #         ],
+    #         max_tokens=500
+    #     )
 
         # Display the processed text
-        st.write("Processed Text:")
-        st.text(response['choices'][0]['message']['content'].strip())
-    else:
-        st.write("No text was extracted from the image.")
+    #     st.write("Processed Text:")
+    #     st.text(response['choices'][0]['message']['content'].strip())
+    # else:
+    #     st.write("No text was extracted from the image.")
 
