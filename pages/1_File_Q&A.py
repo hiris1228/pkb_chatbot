@@ -2,7 +2,6 @@ import streamlit as st
 import anthropic
 from PIL import Image
 import openai
-import pytesseract
 import io
 
 with st.sidebar:
