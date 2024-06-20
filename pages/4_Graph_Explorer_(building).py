@@ -12,7 +12,6 @@ try:
 except ImportError:
     st.error("aiohttp is not installed. Please install it by running `pip install aiohttp`.")
 
-
 # Load configuration
 config_path = 'config.json'
 
