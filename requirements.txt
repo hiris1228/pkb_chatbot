@@ -12,3 +12,4 @@ langchain-community
 langchain_openai
 gremlinpython
 pyvis
+aiohttp
