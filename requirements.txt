@@ -13,3 +13,4 @@ langchain_openai
 gremlinpython
 pyvis
 aiohttp
+aiodns
