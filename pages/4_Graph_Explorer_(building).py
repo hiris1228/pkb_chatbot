@@ -12,6 +12,13 @@ try:
 except ImportError:
     st.error("aiohttp is not installed. Please install it by running `pip install aiohttp`.")
 
+# Verify gremlin_python installation
+try:
+    import gremlin_python
+    st.write(f"gremlin_python version: {gremlin_python.__version__}")
+except ImportError:
+    st.error("gremlin_python is not installed. Please install it by running `pip install gremlinpython`.")
+
 # Load configuration
 config_path = 'config.json'
 
@@ -70,12 +77,12 @@ if config:
     # Streamlit sidebar
     with st.sidebar:
         st.header("Actions")
-        if st.button("Fetch and Visualize Graph"):
+        if st.button("Fetch and Visualise Graph"):
             nodes, edges = fetch_graph()
             if nodes and edges:
                 net = visualize_graph(nodes, edges)
                 net.show("graph.html")
 
     # Display graph
-    st.header("Graph Visualization")
-    st.markdown("Click the button in the sidebar to fetch and visualize the graph.")
+    st.header("Graph Visualisation")
+    st.markdown("Click the button in the sidebar to fetch and visualise the graph.")
