@@ -37,7 +37,7 @@ else:
 
         # Establish a connection to Neptune
         def create_graph_connection():
-            connection_string = f'wss://{neptune_host}:{neptune_port}/gremlin'
+            connection_string = f'https://{neptune_host}:{neptune_port}'
             return DriverRemoteConnection(connection_string, 'g')
 
         # Fetch nodes and edges
