@@ -29,6 +29,10 @@ if prompt := st.chat_input(placeholder="How many nodes in the PKB?"):
         st.info("Please add your OpenAI API key to continue.")
         st.stop()
 
+    if not neptune_host:
+        st.info("Please add your Neptune Host key to continue.")
+        st.stop()
+
     llm = ChatOpenAI(temperature=0, model="gpt-4", openai_api_key=openai_api_key, streaming=True)
     chain = NeptuneOpenCypherQAChain.from_llm(llm=llm, graph=graph)
     
