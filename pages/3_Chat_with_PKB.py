@@ -1,7 +1,9 @@
 import streamlit as st
 from langchain.llms import OpenAI
+from langchain.chains import NeptuneOpenCypherQAChain
+from langchain_openai import ChatOpenAI
 
-st.title("🦜🔗 Langchain Quickstart App")
+st.title("🦜🔗 Chat with the Planatery Knowledge Base")
 
 with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", type="password")
@@ -11,16 +13,26 @@ with st.sidebar:
     neptune_url = f'wss://{neptune_host}:{neptune_port}/gremlin'
     "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
 
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [
+        {"role": "assistant", "content": "Hi, I'm a chatbot who can interact with the PKB. How can I help you?"}
+    ]
 
-def generate_response(input_text):
-    llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
-    st.info(llm(input_text))
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
 
+if prompt := st.chat_input(placeholder="How many nodes in the PKB?"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user").write(prompt)
 
-with st.form("my_form"):
-    text = st.text_area("Enter text:", "What are 3 key advice for learning how to code?")
-    submitted = st.form_submit_button("Submit")
     if not openai_api_key:
         st.info("Please add your OpenAI API key to continue.")
-    elif submitted:
-        generate_response(text)
+        st.stop()
+
+    llm = ChatOpenAI(temperature=0, model="gpt-4", openai_api_key=openai_api_key, streaming=True)
+    chain = NeptuneOpenCypherQAChain.from_llm(llm=llm, graph=graph)
+    
+    with st.chat_message("assistant"):
+        response = chain.invoke(st.session_state.messages, callbacks=[st_cb])
+        st.session_state.messages.append({"role": "assistant", "content": response})
+        st.write(response)
