@@ -3,7 +3,7 @@ import anthropic
 
 with st.sidebar:
     anthropic_api_key = st.text_input("Anthropic API Key", key="file_qa_api_key", type="password")
-    "[View the source code](https://github.com/streamlit/llm-examples/blob/main/pages/1_File_Q%26A.py)"
+    #"[View the source code](https://github.com/streamlit/llm-examples/blob/main/pages/1_File_Q%26A.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
 
 st.title("📝 File Q&A with Anthropic")
@@ -31,3 +31,32 @@ if uploaded_file and question and anthropic_api_key:
     )
     st.write("### Answer")
     st.write(response.completion)
+
+st.title("Specimen Label OCR with OpenAI GPT")
+
+# Upload image
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+
+if uploaded_file is not None:
+    # Display the uploaded image
+    image = Image.open(uploaded_file)
+    st.image(image, caption='Uploaded Image', use_column_width=True)
+
+    # Convert image to bytes
+    img_bytes = io.BytesIO()
+    image.save(img_bytes, format='PNG')
+    img_bytes = img_bytes.getvalue()
+
+    # Prepare the image for OCR processing
+    # Convert the image to text using OpenAI API (GPT-4 model)
+    response = openai.Image.create(
+        file=img_bytes,
+        purpose="document_ocr"
+    )
+
+    # Extract text from response
+    text = response['choices'][0]['text']
+    
+    # Display the extracted text
+    st.write("Extracted Text:")
+    st.text(text)
