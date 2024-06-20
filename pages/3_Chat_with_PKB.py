@@ -4,7 +4,9 @@ from langchain.chains import NeptuneOpenCypherQAChain
 from langchain_openai import ChatOpenAI
 
 st.title("🦜🔗 Chat with the Planatery Knowledge Base")
-
+"""
+Please give us a while, we will get our Neptune connection back!
+"""
 with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", type="password")
     # Define Neptune connection details
