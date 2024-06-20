@@ -5,6 +5,10 @@ st.title("🦜🔗 Langchain Quickstart App")
 
 with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", type="password")
+    # Define Neptune connection details
+    neptune_host = st.text_input("Neptune Host Key", type="password")
+    neptune_port = 8182  # Typically 8182
+    neptune_url = f'wss://{neptune_host}:{neptune_port}/gremlin'
     "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
 
 
