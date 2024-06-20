@@ -2,6 +2,7 @@ import streamlit as st
 import anthropic
 from PIL import Image
 import openai
+import pytesseract
 import io
 
 with st.sidebar:
@@ -45,21 +46,21 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
-    # Convert image to bytes
-    img_bytes = io.BytesIO()
-    image.save(img_bytes, format='PNG')
-    img_bytes = img_bytes.getvalue()
-
-    # Prepare the image for OCR processing
-    # Convert the image to text using OpenAI API (GPT-4 model)
-    response = openai.Image.create(
-        file=img_bytes,
-        purpose="document_ocr"
-    )
-
-    # Extract text from response
-    text = response['choices'][0]['text']
+    # Convert image to text using Tesseract OCR
+    ocr_text = pytesseract.image_to_string(image)
     
     # Display the extracted text
     st.write("Extracted Text:")
-    st.text(text)
+    st.text(ocr_text)
+
+    # Use OpenAI GPT to process the extracted text
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=f"Process the following text extracted from an image: {ocr_text}",
+        max_tokens=500
+    )
+
+    # Display the processed text
+    st.write("Processed Text:")
+    st.text(response.choices[0].text.strip())
+
