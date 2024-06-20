@@ -12,7 +12,11 @@ st.caption("🚀 A Very Friendly chatbot powered by OpenAI and AWS")
 
 """
 This is a draft of PKB Chatbot Demo
+"""
+"""
 1⃣️📷Image OCR - where you can upload a label and extract text information.
+"""
+"""
 2⃣️🔍Chat with Search - where you can ask the PKB Chatbot to search more precise botanist content via the World Wide Web (Very difficult to rate its performance😂)
 3⃣️🌳Chat with PKB - where you can chat with the PKB Chatbot and allow interaction with our PKB Neptune Could service using Natural Language
 (Please remember that the 'Chat with PKB' is not currently fully functioning due to Neptune Engine Issue. I will fix it in a day or two.)
