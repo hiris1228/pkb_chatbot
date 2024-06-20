@@ -1,13 +1,11 @@
 {
-  "PUBLIC_OR_PROXY_ENDPOINT": "https://public-endpoint",
-  "GRAPH_CONNECTION_URL": "tf-20240207121511848700000014.cluster-ro-c9ezntcdvm4p.eu-west-2.neptune.amazonaws.com:8182",
-  "USING_PROXY_SERVER": true,
-  "IAM": true,
-  "SERVICE_TYPE": "neptune-db",
-  "AWS_REGION": "eu-west-2",
-  "GRAPH_TYPE": "gremlin",
-  "GRAPH_EXP_HTTPS_CONNECTION": true,
-  "PROXY_SERVER_HTTPS_CONNECTION": true,
-  "GRAPH_EXP_FETCH_REQUEST_TIMEOUT": 240000,
-  "GRAPH_EXP_NODE_EXPANSION_LIMIT": 500,
+  "neptune": {
+    "host": "tf-20240207121511848700000014.cluster-ro-c9ezntcdvm4p.eu-west-2.neptune.amazonaws.com",
+    "port": 8182,
+    "use-iam-auth": true
+  },
+  "settings": {
+    "use-ssl": true,
+    "aws-region": "eu-west-2"
+  }
 }
