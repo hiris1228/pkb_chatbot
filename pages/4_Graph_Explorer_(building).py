@@ -15,7 +15,7 @@ except ImportError:
 # Verify gremlin_python installation
 try:
     import gremlin_python
-    st.write(f"gremlin_python version: {gremlinpython.__version__}")
+    st.write(f"gremlin_python version: {gremlin_python.__version__}")
 except ImportError:
     st.error("gremlin_python is not installed. Please install it by running `pip install gremlinpython`.")
 
