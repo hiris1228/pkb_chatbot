@@ -1,5 +1,5 @@
 import streamlit as st
-import anthropic
+#import anthropic
 from PIL import Image
 import openai
 import io
@@ -28,17 +28,6 @@ if uploaded_file is not None:
     st.text(ocr_text)
 
     # Use OpenAI GPT to process the extracted text
-    '''
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=f"Process the following text extracted from an image: {ocr_text}",
-        max_tokens=500
-    )
-
-    # Display the processed text
-    st.write("Processed Text:")
-    st.text(response.choices[0].text.strip())
-    '''
     if ocr_text.strip():
         # Use OpenAI GPT to process the extracted text
         response = openai.ChatCompletion.create(
