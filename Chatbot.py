@@ -27,6 +27,10 @@ This is a draft of PKB Chatbot Demo
 🗺️ 4. Graph Navigator - coming soon!
 """
 
+"""
+Please feel free to have a casual chat with our PKB chatbot 😄
+"""
+
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "Hello, I'm the NHM PKB project assistant. How can I help you today?"}]
 
