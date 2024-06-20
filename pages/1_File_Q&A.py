@@ -3,6 +3,7 @@ import anthropic
 from PIL import Image
 import openai
 import io
+import pytesseract
 
 with st.sidebar:
     anthropic_api_key = st.text_input("Anthropic API Key", key="file_qa_api_key", type="password")
