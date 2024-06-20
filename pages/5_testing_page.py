@@ -1,33 +1,81 @@
-import asyncio
 import streamlit as st
-from gremlin_python.structure.graph import Graph
-from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection
-import aiohttp
+import requests
+from pyvis.network import Network
 
-# Ensure aiohttp is working
-st.write(f"aiohttp version: {aiohttp.__version__}")
+# Load configuration
+config = {
+    "neptune": {
+        "host": "tf-20240207121511848700000014.cluster-ro-c9ezntcdvm4p.eu-west-2.neptune.amazonaws.com",
+        "port": 8182,
+        "use-iam-auth": True
+    }
+}
 
 # Neptune connection details
-neptune_host = "your-neptune-endpoint"
-neptune_port = 8182
-
-# Establish a connection to Neptune
-def create_graph_connection():
-    connection_string = f'wss://{neptune_host}:{neptune_port}/gremlin'
-    return DriverRemoteConnection(connection_string, 'g')
-
-# Fetch nodes (test function)
-async def fetch_nodes():
-    try:
-        g = Graph().traversal().withRemote(create_graph_connection())
-        nodes = await g.V().limit(10).toList()
-        st.write("Nodes fetched successfully")
-        st.write(nodes)
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
+neptune_host = config['neptune']['host']
+neptune_port = config['neptune']['port']
+use_iam_auth = config['neptune']['use-iam-auth']
 
 # Streamlit app
 st.title("AWS Neptune Graph Explorer")
 
-if st.button("Test Fetch Nodes"):
-    asyncio.run(fetch_nodes())
+# Function to send Gremlin queries to Neptune using HTTP
+def run_gremlin_query(query):
+    url = f'https://{neptune_host}:{neptune_port}/gremlin'
+    headers = {"Content-Type": "application/json"}
+    data = {
+        "gremlin": query
+    }
+    try:
+        response = requests.post(url, json=data, headers=headers, verify=False)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        st.error(f"Request failed: {e}")
+        return None
+
+# Fetch nodes and edges
+def fetch_graph():
+    nodes_query = "g.V().limit(100)"
+    edges_query = "g.E().limit(100)"
+    
+    nodes_response = run_gremlin_query(nodes_query)
+    edges_response = run_gremlin_query(edges_query)
+    
+    nodes = nodes_response.get('result', {}).get('data', []) if nodes_response else []
+    edges = edges_response.get('result', {}).get('data', []) if edges_response else []
+    
+    return nodes, edges
+
+# Visualize graph
+def visualize_graph(nodes, edges):
+    net = Network(height="750px", width="100%", notebook=True)
+    
+    for node in nodes:
+        node_id = node['id']
+        label = node['label']
+        properties = node['properties']
+        title = f"{label}: {properties}"
+        net.add_node(node_id, label=label, title=title)
+    
+    for edge in edges:
+        source = edge['outV']
+        target = edge['inV']
+        label = edge['label']
+        title = f"{label}"
+        net.add_edge(source, target, title=title)
+    
+    return net
+
+# Streamlit sidebar
+with st.sidebar:
+    st.header("Actions")
+    if st.button("Fetch and Visualize Graph"):
+        nodes, edges = fetch_graph()
+        if nodes and edges:
+            net = visualize_graph(nodes, edges)
+            net.show("graph.html")
+
+# Display graph
+st.header("Graph Visualization")
+st.markdown("Click the button in the sidebar to fetch and visualize the graph.")
