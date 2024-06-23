@@ -12,3 +12,4 @@ langchain_openai
 gremlinpython>=3.5.2
 aiohttp>=3.8.3
 pyvis
+async-timeout
