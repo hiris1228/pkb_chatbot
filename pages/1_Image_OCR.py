@@ -2,7 +2,7 @@ import streamlit as st
 #import anthropic
 from PIL import Image
 #from openai import OpenAI
-from openai
+import openai
 import io
 import pytesseract
 
@@ -28,7 +28,7 @@ if uploaded_file is not None:
     st.write("Extracted Text:")
     st.text(ocr_text)
 
-
+    openai.aip_kep = openai_api_key
 
     # Use OpenAI GPT to process the extracted text
     if ocr_text.strip() and openai_api_key:
