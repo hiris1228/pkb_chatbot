@@ -30,7 +30,7 @@ if uploaded_file is not None:
     # Use OpenAI GPT to process the extracted text
     if ocr_text.strip() and openai.api_key:
         try:
-            response = openai.ChatCompletion.create(
+            response = openai.completions.create(
                 model="gpt-4",
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant."},
