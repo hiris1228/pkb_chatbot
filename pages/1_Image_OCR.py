@@ -35,6 +35,7 @@ if uploaded_file is not None:
                 model="gpt-3.5-turbo-instruct",
                 # messages=[{"role": "system", "content": "You are a helpful assistant."}],
                 prompt=f"Process the following text extracted from the image line by line: {ocr_text}"
+                max_tokens = 500
             )
 
             # Display the processed text
