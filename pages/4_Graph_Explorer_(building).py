@@ -36,7 +36,14 @@ def load_config(path):
         st.error(f"An unexpected error occurred: {e}")
         return None
 
-config = load_config(config_path)
+# Hardcoded configuration
+config = {
+    "neptune": {
+        "host": "tf-20240207121511848700000014.cluster-ro-c9ezntcdvm4p.eu-west-2.neptune.amazonaws.com",
+        "port": 8182,
+        "use-iam-auth": True  # Set to True if using IAM authentication
+    }
+}
 
 if config:
     st.success("Configuration loaded successfully")
