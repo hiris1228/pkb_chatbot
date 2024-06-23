@@ -1,6 +1,6 @@
 {
   "neptune": {
-    "host": "tf-20240207121624424700000018.c9ezntcdvm4p.eu-west-2.neptune.amazonaws.com",
+    "host": "tf-20240207121511848700000014.cluster-c9ezntcdvm4p.eu-west-2.neptune.amazonaws.com",
     "port": 8182,
     "use-iam-auth": true
   },
