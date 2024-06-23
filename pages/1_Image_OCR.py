@@ -34,7 +34,7 @@ if uploaded_file is not None:
             response = client.completions.create(
                 model="gpt-3.5-turbo-instruct",
                 # messages=[{"role": "system", "content": "You are a helpful assistant."}],
-                prompt=f"Process the following text extracted from the image: {ocr_text}",
+                prompt=f"Process the following text extracted from the image in English: {ocr_text}",
                 max_tokens = 500
             )
 
