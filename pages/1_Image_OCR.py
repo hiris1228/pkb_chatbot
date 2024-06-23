@@ -31,7 +31,7 @@ if uploaded_file is not None:
     if ocr_text.strip() and openai.api_key:
         try:
             response = openai.completions.create(
-                model="gpt-4",
+                model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
