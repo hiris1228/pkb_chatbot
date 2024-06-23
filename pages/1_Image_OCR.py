@@ -37,7 +37,8 @@ if uploaded_file is not None:
                 #     {"role": "system", "content": "You are a helpful assistant."},
                 #     {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
                 # ]
-                prompt=f"Process the following text extracted from an image: {ocr_text}"
+                # prompt=f"Process the following text extracted from an image: {ocr_text}"
+                messages = {ocr_text}
             )
 
             # Display the processed text
