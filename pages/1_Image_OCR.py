@@ -24,7 +24,7 @@ if uploaded_file is not None:
     ocr_text = pytesseract.image_to_string(image)
     
     # Display the extracted text
-    st.header("Extracted Text:")
+    st.subheader("Extracted Text:")
     st.text(ocr_text)
 
     # Use OpenAI GPT to process the extracted text
@@ -39,7 +39,7 @@ if uploaded_file is not None:
             )
 
             # Display the processed text
-            st.header("Processed Text:")
+            st.subheader("Processed Text:")
             # st.text(response['choices'][0]['message']['content'].strip())
             st.markdown(response.choices[0].text.strip())
         except Exception as e:
