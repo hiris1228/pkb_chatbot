@@ -30,7 +30,7 @@ if uploaded_file is not None:
     # Use OpenAI GPT to process the extracted text
     if ocr_text.strip() and openai_api_key:
         try:
-            client = OpenAI(openai_api_key)
+            client = OpenAI(api_key=openai_api_key)
             response = client.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
