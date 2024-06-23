@@ -40,7 +40,7 @@ if uploaded_file is not None:
             # Display the processed text
             st.write("Processed Text:")
             # st.text(response['choices'][0]['message']['content'].strip())
-            st.text(response.choices[0].['text'].strip())
+            st.text(response.choices[0].text.strip())
         except Exception as e:
             st.error(f"An error occurred: {e}")
     else:
