@@ -1,8 +1,7 @@
 import streamlit as st
 #import anthropic
 from PIL import Image
-#from openai import OpenAI
-import openai
+from openai import OpenAI
 import io
 import pytesseract
 
@@ -28,22 +27,21 @@ if uploaded_file is not None:
     st.write("Extracted Text:")
     st.text(ocr_text)
 
-    openai.aip_kep = openai_api_key
-
     # Use OpenAI GPT to process the extracted text
     if ocr_text.strip() and openai_api_key:
         try:
-            response = openai.ChatCompletion.create(
+            client = OpenAI(api_key=openai_api_key)
+            response = client.completions.create(
                 model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
-                ]
+                messages=[{"role": "system", "content": "You are a helpful assistant."}],
+                prompt=f"Process the following text extracted from an image: {ocr_text}"
+                # messages = {ocr_text}
             )
 
             # Display the processed text
             st.write("Processed Text:")
-            st.text(response['choices'][0]['message']['content'].strip())
+            # st.text(response['choices'][0]['message']['content'].strip())
+            st.text(response['choices'][0]['text'].strip())
         except Exception as e:
             st.error(f"An error occurred: {e}")
     else:
