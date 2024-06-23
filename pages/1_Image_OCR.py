@@ -34,13 +34,13 @@ if uploaded_file is not None:
             response = client.completions.create(
                 model="gpt-3.5-turbo-instruct",
                 # messages=[{"role": "system", "content": "You are a helpful assistant."}],
-                prompt=f"Summarise this text: {ocr_text}"
+                prompt=f"Process the following text extracted from an image: {ocr_text}"
             )
 
             # Display the processed text
             st.write("Processed Text:")
             # st.text(response['choices'][0]['message']['content'].strip())
-            st.text(response.choices[0].text)
+            st.text(response.choices[0].text.strip())
         except Exception as e:
             st.error(f"An error occurred: {e}")
     else:
@@ -51,7 +51,7 @@ if uploaded_file is not None:
     # if ocr_text.strip():
         # Use OpenAI GPT to process the extracted text
     #     response = openai.ChatCompletion.create(
-    #         model="gpt-4",
+    #         model="gpt-4", #this is a chat model, not suitable in this case
     #         messages=[
     #             {"role": "system", "content": "You are a helpful assistant."},
     #             {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
