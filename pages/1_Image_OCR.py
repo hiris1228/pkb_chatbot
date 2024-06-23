@@ -28,7 +28,7 @@ if uploaded_file is not None:
     st.text(ocr_text)
 
     # Use OpenAI GPT to process the extracted text
-    if ocr_text.strip() and openai.api_key:
+    if ocr_text.strip() and openai_api_key:
         try:
             client = OpenAI(openai_api_key)
             response = client.completions.create(
