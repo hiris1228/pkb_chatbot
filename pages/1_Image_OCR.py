@@ -6,7 +6,7 @@ import io
 import pytesseract
 
 with st.sidebar:
-    openai.api_key = st.text_input("OpenAI API Key", type="password")
+    openai_api_key = st.text_input("OpenAI API Key", type="password")
     #"[View the source code](https://github.com/streamlit/llm-examples/blob/main/pages/1_File_Q%26A.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
 
@@ -30,13 +30,13 @@ if uploaded_file is not None:
     # Use OpenAI GPT to process the extracted text
     if ocr_text.strip() and openai.api_key:
         try:
-            response = openai.completions.create(
+            client = OpenAI(openai_api_key)
+            response = client.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
-                ],
-                max_tokens=500
+                ]
             )
 
             # Display the processed text
