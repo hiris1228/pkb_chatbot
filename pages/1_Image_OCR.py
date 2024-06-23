@@ -32,7 +32,7 @@ if uploaded_file is not None:
         try:
             client = OpenAI(api_key=openai_api_key)
             response = client.completions.create(
-                model="gpt-4",
+                model="gpt-3.5-turbo-instruct",
                 # messages=[{"role": "system", "content": "You are a helpful assistant."}],
                 prompt=f"Summarise this text: {ocr_text}"
             )
