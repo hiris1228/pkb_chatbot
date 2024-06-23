@@ -2,6 +2,7 @@ import streamlit as st
 #import anthropic
 from PIL import Image
 from openai import OpenAI
+from openai
 import io
 import pytesseract
 
