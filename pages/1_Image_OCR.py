@@ -28,11 +28,11 @@ if uploaded_file is not None:
     st.text(ocr_text)
 
     # Use OpenAI GPT to process the extracted text
-    if openai_api_key:
+    if ocr_text.strip() and openai_api_key:
         try:
             client = OpenAI(api_key=openai_api_key)
             response = client.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4",
                 # messages=[
                 #     {"role": "system", "content": "You are a helpful assistant."},
                 #     {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
