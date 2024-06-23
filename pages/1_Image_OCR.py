@@ -33,10 +33,10 @@ if uploaded_file is not None:
             client = OpenAI(api_key=openai_api_key)
             response = client.completions.create(
                 model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
-                ]
+                # messages=[
+                #     {"role": "system", "content": "You are a helpful assistant."},
+                #     {"role": "user", "content": f"Process the following text extracted from an image: {ocr_text}"}
+                # ]
                 prompt=f"Process the following text extracted from an image: {ocr_text}"
             )
 
