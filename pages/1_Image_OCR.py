@@ -33,15 +33,14 @@ if uploaded_file is not None:
             client = OpenAI(api_key=openai_api_key)
             response = client.completions.create(
                 model="gpt-4",
-                messages=[{"role": "system", "content": "You are a helpful assistant."}],
-                prompt=f"Process the following text extracted from an image: {ocr_text}"
-                # messages = {ocr_text}
+                # messages=[{"role": "system", "content": "You are a helpful assistant."}],
+                prompt=f"Summarise this text: {ocr_text}"
             )
 
             # Display the processed text
             st.write("Processed Text:")
             # st.text(response['choices'][0]['message']['content'].strip())
-            st.text(response['choices'][0]['text'].strip())
+            st.text(response.choices[0].text)
         except Exception as e:
             st.error(f"An error occurred: {e}")
     else:
