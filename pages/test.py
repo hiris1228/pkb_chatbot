@@ -65,7 +65,7 @@ if prompt := st.chat_input(placeholder="Ask something about the PKB"):
             #prompt=f"convert to OpenCypher query in Neptune: {prompt}",
             max_tokens=150
         )
-        return response.choices[0].message["content"].strip()
+        return response.choices[0].text.strip() #response.choices[0].message["content"].strip()
 
     # Process user's prompt
     openai_response = get_openai_response_new(prompt)
