@@ -61,8 +61,8 @@ if prompt := st.chat_input(placeholder="Ask something about the PKB"):
         client = OpenAI(api_key=openai_api_key)
         response = client.completions.create(
             model="gpt-4",  # Use the appropriate model
-            messages=[{"role": "user", "content": prompt}],
-            #prompt=f"convert to OpenCypher query in Neptune: {prompt}",
+            #messages=[{"role": "user", "content": prompt}],
+            prompt=f"convert to OpenCypher query in Neptune: {prompt}",
             max_tokens=150
         )
         return response.choices[0].text.strip() #response.choices[0].message["content"].strip()
