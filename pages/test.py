@@ -1,5 +1,6 @@
 import streamlit as st
-import openai
+# import openai
+from openai import OpenAI
 from gremlin_python.driver import client, serializer
 
 st.title("🦜🔗 Chat with the Planetary Knowledge Base")
@@ -32,7 +33,7 @@ if prompt := st.chat_input(placeholder="Ask something about the PKB"):
         st.stop()
 
     # Setup OpenAI API
-    openai.api_key = openai_api_key
+    # openai.api_key = openai_api_key
 
     # Function to query Neptune
     def query_neptune(query):
@@ -49,7 +50,8 @@ if prompt := st.chat_input(placeholder="Ask something about the PKB"):
 
     # Function to get OpenAI response
     def get_openai_response(prompt):
-        response = openai.Completion.create(
+        client = OpenAI(api_key=openai_api_key)
+        response = client.completions.create(
             engine="davinci",
             prompt=prompt,
             max_tokens=150
