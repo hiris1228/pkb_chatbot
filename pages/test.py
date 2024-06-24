@@ -1,5 +1,6 @@
 import streamlit as st
-import openai
+#import openai
+from openai import OpenAI
 from gremlin_python.driver import client, serializer
 
 st.title("🦜🔗 Chat with the Planetary Knowledge Base")
@@ -32,7 +33,7 @@ if prompt := st.chat_input(placeholder="Ask something about the PKB"):
         st.stop()
 
     # Setup OpenAI API
-    openai.api_key = openai_api_key
+    #openai.api_key = openai_api_key
 
     # Function to query Neptune
     def query_neptune(query):
@@ -52,6 +53,16 @@ if prompt := st.chat_input(placeholder="Ask something about the PKB"):
         response = openai.ChatCompletion.create(
             model="gpt-4",  # Use the appropriate model
             messages=[{"role": "user", "content": prompt}],
+            max_tokens=150
+        )
+        return response.choices[0].message["content"].strip()
+
+    def get_openai_response_new(prompt):
+        client = OpenAI(api_key=openai_api_key)
+        response = client.completions.create(
+            model="gpt-4",  # Use the appropriate model
+            messages=[{"role": "user", "content": prompt}],
+            #prompt=f"convert to OpenCypher query in Neptune: {prompt}",
             max_tokens=150
         )
         return response.choices[0].message["content"].strip()
