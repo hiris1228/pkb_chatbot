@@ -54,7 +54,7 @@ if prompt := st.chat_input(placeholder="Ask something about the PKB"):
         response = client.completions.create(
             engine="davinci",
             prompt=prompt,
-            max_tokens=150
+            max_tokens=300
         )
         return response.choices[0].text.strip()
 
