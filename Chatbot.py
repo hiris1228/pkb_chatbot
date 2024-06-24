@@ -24,7 +24,7 @@ This is a draft of PKB Chatbot Demo
 (Please remember that the 'Chat with PKB' is not currently fully functioning due to Neptune Engine Issue. I will fix it in a day or two.)
 """
 """
-🗺️ 4. Graph Navigator—Visualisation of a part of the PKB graph. (We are currently experiencing a connection loss due to the Neptune issue!)
+🗺️ 4. Graph Navigator — Visualisation of a part of the PKB graph. (We are currently experiencing a connection loss due to the Neptune issue!)
 """
 """
 """
