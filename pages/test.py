@@ -34,4 +34,35 @@ if prompt := st.chat_input(placeholder="Ask something about the PKB"):
     # Setup OpenAI API
     openai.api_key = openai_api_key
 
-    # Function to query
+    # Function to query Neptune
+    def query_neptune(query):
+        g = client.Client(
+            neptune_url, 'g',
+            username="", password="",
+            message_serializer=serializer.GraphSONSerializersV3d0()
+        )
+        callback = g.submitAsync(query)
+        if callback.result():
+            return callback.result().all().result()
+        else:
+            return "No results found"
+
+    # Function to get OpenAI response
+    def get_openai_response(prompt):
+        response = openai.ChatCompletion.create(
+            model="gpt-4",  # Use the appropriate model
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=150
+        )
+        return response.choices[0].message["content"].strip()
+
+    # Process user's prompt
+    openai_response = get_openai_response(prompt)
+    st.session_state.messages.append({"role": "assistant", "content": openai_response})
+    st.chat_message("assistant").write(openai_response)
+
+    # Assuming the response contains a Cypher query, you may need to adjust this based on your use case
+    neptune_query = openai_response  # This should be a parsed Cypher query from the response
+    neptune_response = query_neptune(neptune_query)
+    st.session_state.messages.append({"role": "assistant", "content": str(neptune_response)})
+    st.chat_message("assistant").write(str(neptune_response))
