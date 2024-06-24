@@ -68,7 +68,7 @@ if prompt := st.chat_input(placeholder="Ask something about the PKB"):
         return response.choices[0].message["content"].strip()
 
     # Process user's prompt
-    openai_response = get_openai_response(prompt)
+    openai_response = get_openai_response_new(prompt)
     st.session_state.messages.append({"role": "assistant", "content": openai_response})
     st.chat_message("assistant").write(openai_response)
 
