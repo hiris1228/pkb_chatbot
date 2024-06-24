@@ -1,6 +1,6 @@
 streamlit>=1.28
 langchain>=0.0.217
-openai>=1.3
+openai>=1.35
 duckduckgo-search
 anthropic>=0.3.0
 trubrics>=1.4.3
