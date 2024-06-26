@@ -33,6 +33,12 @@ if st.button("Connect"):
 # Query input
 query = st.text_area("Cypher Query", "MATCH (n) RETURN n LIMIT 5")
 
+# Function to run a query
+def run_query(driver, query):
+    with driver.session() as session:
+        result = session.run(query)
+        return result
+
 # Run the query
 if st.button("Run Query"):
     if st.session_state.driver:
@@ -44,9 +50,3 @@ if st.button("Run Query"):
             st.error(f"Error running query: {e}")
     else:
         st.error("Please connect to the database first.")
-
-# Function to run a query
-def run_query(driver, query):
-    with driver.session() as session:
-        result = session.run(query)
-        return result
