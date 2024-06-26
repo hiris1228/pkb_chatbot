@@ -14,7 +14,7 @@ def create_driver(uri, user, password):
 st.title("Neo4j Streamlit Integration")
 
 # Inputs for Neo4j connection
-uri = st.text_input("Ngrok URI", os.getenv("NGROK_URI", "0.tcp.ngrok.io:xxxxx"))
+uri = st.text_input("Ngrok URI", os.getenv("NGROK_URI", "2.tcp.ngrok.io:14746"))
 username = st.text_input("Username", os.getenv("NEO4J_USERNAME", "neo4j"))
 password = st.text_input("Password", type="password", value=os.getenv("NEO4J_PASSWORD"))
 
