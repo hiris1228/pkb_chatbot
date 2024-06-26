@@ -4,6 +4,9 @@ import os
 
 # Function to create a Neo4j driver instance
 def create_driver(uri, user, password):
+    # Ensure the URI starts with 'bolt://'
+    if not uri.startswith("bolt://"):
+        uri = "bolt://" + uri
     driver = GraphDatabase.driver(uri, auth=(user, password))
     return driver
 
@@ -17,7 +20,7 @@ def run_query(driver, query):
 st.title("Neo4j Streamlit Integration")
 
 # Inputs for Neo4j connection
-uri = st.text_input("Ngrok URI", os.getenv("NGROK_URI", "tcp://2.tcp.ngrok.io:14746"))
+uri = st.text_input("Ngrok URI", os.getenv("NGROK_URI", "2.tcp.ngrok.io:14746"))
 username = st.text_input("Username", os.getenv("NEO4J_USERNAME", "neo4j"))
 password = st.text_input("Password", type="password", value=os.getenv("NEO4J_PASSWORD"))
 
@@ -40,4 +43,3 @@ if st.button("Run Query"):
             st.error(f"Error running query: {e}")
     else:
         st.error("Please connect to the database first.")
-
