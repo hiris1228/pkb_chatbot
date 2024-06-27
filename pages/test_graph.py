@@ -84,6 +84,7 @@ if st.button("Run Query"):
     if st.session_state.driver:
         try:
             graph = run_query_as_graph(st.session_state.driver, query)
+            st.write(graph)
             net = visualize_graph(graph)
             HtmlFile = open("graph.html", 'r', encoding='utf-8')
             source_code = HtmlFile.read()
