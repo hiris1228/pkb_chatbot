@@ -25,8 +25,8 @@ def visualize_graph(graph):
 
     # Add nodes and relationships to the network
     for node in graph.nodes:
-        st.write(node.id.type())
         net.add_node(node.id, label=node.get('name', node.id))
+        st.write(net)
 
     for relationship in graph.relationships:
         net.add_edge(relationship.start_node.id, relationship.end_node.id, label=relationship.type)
