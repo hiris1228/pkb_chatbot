@@ -28,6 +28,7 @@ def visualize_graph(graph):
         net.add_node(node.id, label=node.get('name', node.id))
         st.write(net)
 
+    st.write(len(graph.relationships))
     for relationship in graph.relationships:
         net.add_edge(relationship.start_node.id, relationship.end_node.id, label=relationship.type)
         st.write(net)
