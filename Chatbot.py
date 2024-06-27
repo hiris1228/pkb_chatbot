@@ -7,7 +7,7 @@ with st.sidebar:
     # "[View the source code](https://github.com/hiris1228/pkb_chatbot/edit/main/Chatbot.py)"
     # "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
 
-st.title("🌍🤖️💬 PKB Chatbot Demo")
+st.title("🌍🤖️💬 PKB Chatbot")
 st.caption("🚀 A Very Friendly chatbot powered by OpenAI and AWS")
 
 """
