@@ -22,7 +22,7 @@ def run_query(driver, query):
 # Function to visualize the graph using pyvis
 def visualize_graph(records):
     net = Network(height='750px', width='100%', directed=True)
-    print(net)
+    st.write(net)
     # Create sets to avoid duplicate nodes and edges
     nodes = set()
     edges = set()
@@ -100,7 +100,8 @@ if st.button("Run Query"):
     if st.session_state.driver:
         try:
             records = run_query(st.session_state.driver, query)
-            print(records)
+            for record in records:
+                st.write(record)
             net = visualize_graph(records)
             HtmlFile = open("graph.html", 'r', encoding='utf-8')
             source_code = HtmlFile.read()
