@@ -41,7 +41,7 @@ def visualize_graph(graph):
       },
       "edges": {
         "font": {
-          "size": 15,
+          "size": 15
           "align": "middle"
         },
         "color": {
