@@ -34,6 +34,7 @@ def visualize_graph(graph):
         st.write(net)
     
     net.save_graph('graph.html')
+    net.show('network.html', notebook=False)
     return net
 
 # Streamlit app layout
