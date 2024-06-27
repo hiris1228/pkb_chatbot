@@ -23,16 +23,28 @@ def run_query(driver, query):
 def visualize_graph(records):
     net = Network(height='750px', width='100%', directed=True)
     
+    # Create sets to avoid duplicate nodes and edges
+    nodes = set()
+    edges = set()
+    
     for record in records:
         for key, value in record.items():
             if isinstance(value, dict) and 'id' in value:
-                net.add_node(value['id'], label=value['id'])
+                nodes.add((value['id'], value.get('name', value['id'])))  # Add node with id and optional name
             elif isinstance(value, list):
                 for item in value:
                     if 'start' in item and 'end' in item and 'type' in item:
-                        net.add_node(item['start'], label=item['start'])
-                        net.add_node(item['end'], label=item['end'])
-                        net.add_edge(item['start'], item['end'], label=item['type'])
+                        edges.add((item['start'], item['end'], item['type']))
+                        nodes.add((item['start'], item['start']))  # Ensure start node is added
+                        nodes.add((item['end'], item['end']))      # Ensure end node is added
+
+    # Add nodes to the network
+    for node_id, node_label in nodes:
+        net.add_node(node_id, label=node_label)
+
+    # Add edges to the network
+    for start, end, edge_label in edges:
+        net.add_edge(start, end, label=edge_label)
 
     net.set_options("""
     var options = {
