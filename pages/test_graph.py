@@ -30,6 +30,7 @@ def visualize_graph(graph):
 
     for relationship in graph.relationships:
         net.add_edge(relationship.start_node.id, relationship.end_node.id, label=relationship.type)
+        st.write(net)
 
     net.set_options("""
     var options = {
