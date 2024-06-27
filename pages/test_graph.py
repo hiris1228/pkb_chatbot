@@ -26,15 +26,15 @@ def visualize_graph(graph):
     # Add nodes and relationships to the network
     for node in graph.nodes:
         net.add_node(node.id, label=node.get('name', node.id))
-        st.write(net)
+        #st.write(net)
 
     st.write(len(graph.relationships))
     for relationship in graph.relationships:
         net.add_edge(relationship.start_node.id, relationship.end_node.id, label=relationship.type)
-        st.write(net)
+        #st.write(net)
     
-    net.save_graph('graph.html')
-    net.show('network.html', notebook=False)
+    #net.save_graph('graph.html')
+    #net.show('network.html', notebook=False)
     return net
 
 # Streamlit app layout
@@ -65,14 +65,14 @@ if st.button("Run Query"):
     if st.session_state.driver:
         try:
             graph = run_query_as_graph(st.session_state.driver, query)
-            st.write(graph)
+            #st.write(graph)
             net = visualize_graph(graph)
-            st.write('finish')
-            st.write(net)
+            st.write('Finish graph loading: ')
+            #st.write(net)
             #HtmlFile = open("graph.html", 'r', encoding='utf-8')
             #source_code = HtmlFile.read()
             #components.html(source_code, height=750, width=0.9)
-            components.html(net.generate_html())
+            components.html(net.generate_html(), height=750)
         except Exception as e:
             st.error(f"Error running query: {e}")
     else:
