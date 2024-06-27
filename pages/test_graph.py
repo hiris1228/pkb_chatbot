@@ -70,7 +70,7 @@ if st.button("Run Query"):
             st.write(net)
             HtmlFile = open("graph.html", 'r', encoding='utf-8')
             source_code = HtmlFile.read()
-            components.html(source_code, height=750, width="100%")
+            #components.html(source_code, height=750, width="100%")
         except Exception as e:
             st.error(f"Error running query: {e}")
     else:
