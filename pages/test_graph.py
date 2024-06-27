@@ -28,10 +28,33 @@ def visualize_graph(graph):
         net.add_node(node.id, label=node.get('name', node.id))
         #st.write(net)
 
-    st.write(len(graph.relationships))
+    #st.write(len(graph.relationships))
     for relationship in graph.relationships:
         net.add_edge(relationship.start_node.id, relationship.end_node.id, label=relationship.type)
         #st.write(net)
+
+    net.set_options("""
+    var options = {
+      "nodes": {
+        "font": {
+          "size": 20
+        }
+      },
+      "edges": {
+        "font": {
+          "size": 15,
+          "align": "middle"
+        },
+        "color": {
+          "color": "#848484",
+          "highlight": "#848484",
+          "hover": "#848484",
+          "inherit": false
+        },
+        "smooth": false
+      }
+    }
+    """)
     
     #net.save_graph('graph.html')
     #net.show('network.html', notebook=False)
@@ -58,7 +81,7 @@ if st.button("Connect"):
         st.error(f"Failed to connect to Neo4j: {e}")
 
 # Query input
-query = st.text_area("Cypher Query", "MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 5")
+query = st.text_area("Cypher Query", "MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 25")
 
 # Run the query and visualize the graph
 if st.button("Run Query"):
