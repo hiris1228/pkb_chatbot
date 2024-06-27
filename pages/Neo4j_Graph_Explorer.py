@@ -29,7 +29,10 @@ def visualize_graph(records):
     
     for record in records:
         for key, value in record.items():
+            st.write(key)
+            st.write(value)
             if isinstance(value, dict) and 'id' in value:
+                st.write(value['id'])
                 nodes.add((value['id'], value.get('name', value['id'])))  # Add node with id and optional name
             elif isinstance(value, list):
                 for item in value:
