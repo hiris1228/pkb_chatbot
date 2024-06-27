@@ -29,17 +29,21 @@ def visualize_graph(records):
     
     for record in records:
         for key, value in record.items():
-            # st.write(key)
-            # st.write(value)
-            if isinstance(value, dict) and 'id' in value:
-                # st.write(value['id'])
-                nodes.add((value['id'], value.get('name', value['id'])))  # Add node with id and optional name
+            if isinstance(value, dict):
+                # Check if value represents a node
+                if 'id' in value:
+                    node_id = value['id']
+                    label = value.get('name', node_id)
+                    nodes.add((node_id, label))
             elif isinstance(value, list):
                 for item in value:
-                    if 'start' in item and 'end' in item and 'type' in item:
-                        edges.add((item['start'], item['end'], item['type']))
-                        nodes.add((item['start'], item['start']))  # Ensure start node is added
-                        nodes.add((item['end'], item['end']))      # Ensure end node is added
+                    if isinstance(item, dict) and 'start' in item and 'end' in item and 'type' in item:
+                        start = item['start']
+                        end = item['end']
+                        edge_label = item['type']
+                        edges.add((start, end, edge_label))
+                        nodes.add((start, start))  # Ensure start node is added
+                        nodes.add((end, end))      # Ensure end node is added
 
     # Add nodes to the network
     for node_id, node_label in nodes:
