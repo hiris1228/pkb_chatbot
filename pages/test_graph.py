@@ -15,9 +15,8 @@ def create_driver(uri, user, password):
 # Function to run a query and fetch results as a graph
 def run_query_as_graph(driver, query):
     with driver.session() as session:
-        result = session.run(query)
-        graph = result.graph()
-        return graph
+        result = driver.execute_query(query, result_transformer_=neo4j.Result.graph, )
+        return result
 
 # Function to visualize the graph using pyvis
 def visualize_graph(graph):
