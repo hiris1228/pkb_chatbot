@@ -31,29 +31,6 @@ def visualize_graph(graph):
     for relationship in graph.relationships:
         net.add_edge(relationship.start_node.id, relationship.end_node.id, label=relationship.type)
         st.write(net)
-
-    net.set_options("""
-    var options = {
-      "nodes": {
-        "font": {
-          "size": 20
-        }
-      },
-      "edges": {
-        "font": {
-          "size": 15
-          "align": "middle"
-        },
-        "color": {
-          "color": "#848484",
-          "highlight": "#848484",
-          "hover": "#848484",
-          "inherit": false
-        },
-        "smooth": false
-      }
-    }
-    """)
     
     net.save_graph('graph.html')
     return net
