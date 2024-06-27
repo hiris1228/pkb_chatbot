@@ -69,9 +69,10 @@ if st.button("Run Query"):
             net = visualize_graph(graph)
             st.write('finish')
             st.write(net)
-            HtmlFile = open("graph.html", 'r', encoding='utf-8')
-            source_code = HtmlFile.read()
-            #components.html(source_code, height=750, width="100%")
+            #HtmlFile = open("graph.html", 'r', encoding='utf-8')
+            #source_code = HtmlFile.read()
+            #components.html(source_code, height=750, width=0.9)
+            components.html(net.generate_html())
         except Exception as e:
             st.error(f"Error running query: {e}")
     else:
