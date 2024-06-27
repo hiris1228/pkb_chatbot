@@ -22,7 +22,7 @@ def run_query(driver, query):
 # Function to visualize the graph using pyvis
 def visualize_graph(records):
     net = Network(height='750px', width='100%', directed=True)
-    
+    print(records)
     # Create sets to avoid duplicate nodes and edges
     nodes = set()
     edges = set()
