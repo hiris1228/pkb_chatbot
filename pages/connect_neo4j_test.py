@@ -14,7 +14,7 @@ def create_driver(uri, user, password):
 st.title("Neo4j Streamlit Integration")
 
 # Inputs for Neo4j connection
-uri = st.text_input("Ngrok URI", os.getenv("NGROK_URI", "2.tcp.ngrok.io:14746"))
+uri = st.text_input("Ngrok URI", os.getenv("NGROK_URI", "0.tcp.ngrok.io:19764"))
 username = st.text_input("Username", os.getenv("NEO4J_USERNAME", "neo4j"))
 password = st.text_input("Password", type="password", value=os.getenv("NEO4J_PASSWORD"))
 
@@ -33,11 +33,12 @@ if st.button("Connect"):
 # Query input
 query = st.text_area("Cypher Query", "MATCH (n) RETURN n LIMIT 5")
 
-# Function to run a query
+# Function to run a query and fetch all results
 def run_query(driver, query):
     with driver.session() as session:
         result = session.run(query)
-        return result
+        records = result.data()  # Fetch all records at once
+        return records
 
 # Run the query
 if st.button("Run Query"):
