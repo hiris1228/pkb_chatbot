@@ -25,6 +25,7 @@ def visualize_graph(graph):
 
     # Add nodes and relationships to the network
     for node in graph.nodes:
+        st.write(node.id)
         net.add_node(node.id, label=node.get('name', node.id))
 
     for relationship in graph.relationships:
@@ -77,7 +78,7 @@ if st.button("Connect"):
         st.error(f"Failed to connect to Neo4j: {e}")
 
 # Query input
-query = st.text_area("Cypher Query", "MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 25")
+query = st.text_area("Cypher Query", "MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 5")
 
 # Run the query and visualize the graph
 if st.button("Run Query"):
