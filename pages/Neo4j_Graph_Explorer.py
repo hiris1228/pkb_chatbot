@@ -81,7 +81,7 @@ if st.button("Connect"):
         st.error(f"Failed to connect to Neo4j: {e}")
 
 # Query input
-query = st.text_area("Cypher Query", "MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 30")
+query = st.text_area("Cypher Query", "MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 25")
 
 # Run the query and visualize the graph
 if st.button("Run Query"):
