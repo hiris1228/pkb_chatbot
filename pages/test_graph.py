@@ -66,6 +66,8 @@ if st.button("Run Query"):
             graph = run_query_as_graph(st.session_state.driver, query)
             st.write(graph)
             net = visualize_graph(graph)
+            st.write('finish')
+            st.write(net)
             HtmlFile = open("graph.html", 'r', encoding='utf-8')
             source_code = HtmlFile.read()
             components.html(source_code, height=750, width="100%")
