@@ -1,5 +1,6 @@
 import streamlit as st
 from neo4j import GraphDatabase
+import neo4j
 from pyvis.network import Network
 import streamlit.components.v1 as components
 import os
