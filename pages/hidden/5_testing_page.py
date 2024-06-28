@@ -5,7 +5,7 @@ from pyvis.network import Network
 # Load configuration
 config = {
     "neptune": {
-        "host": "tf-20240207121511848700000014.cluster-ro-c9ezntcdvm4p.eu-west-2.neptune.amazonaws.com",
+        "host": "host-link",
         "port": 8182,
         "use-iam-auth": True
     }
