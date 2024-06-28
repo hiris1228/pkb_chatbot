@@ -39,7 +39,7 @@ def load_config(path):
 # Hardcoded configuration
 config = {
     "neptune": {
-        "host": "tf-20240207121511848700000014.cluster-ro-c9ezntcdvm4p.eu-west-2.neptune.amazonaws.com",
+        "host": "",
         "port": 8182,
         "use-iam-auth": True  # Set to True if using IAM authentication
     }
