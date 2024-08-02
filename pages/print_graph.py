@@ -26,7 +26,7 @@ st.title("Simple DataFrame Display")
 st.write("Below is a sample DataFrame displayed using Streamlit:")
 
 # Streamlit method to display dataframe
-st.dataframe(df)
+st.dataframe(data)
 
 # Create the network
 g = Network(height='400px', width='80%', heading='')
