@@ -14,6 +14,20 @@ institutionname = 'Royal Botanic Gardens Kew'
 taxon = 'Datura arborea'
 namelist = ['Michael Owen','Dillon D. Dillon','Abundio Sagástegui Alva']
 
+# Sample DataFrame
+data = {
+    'Name': ['John', 'Jane', 'Doe'],
+    'Age': [28, 34, 29],
+    'Occupation': ['Engineer', 'Doctor', 'Artist']
+}
+
+# Display the DataFrame in Streamlit
+st.title("Simple DataFrame Display")
+st.write("Below is a sample DataFrame displayed using Streamlit:")
+
+# Streamlit method to display dataframe
+st.dataframe(df)
+
 # Create the network
 g = Network(height='400px', width='80%', heading='')
 
