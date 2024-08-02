@@ -39,13 +39,6 @@ for name in namelist:
 html_file = 'example.html'
 g.save_graph(html_file)
 
-# Display the HTML
-with open(html_file, 'r') as file:
-    html_content = file.read()
-    
-display(HTML(html_content))
-
-
 HtmlFile = open("test.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
 components.html(source_code, height = 900,width=900)
